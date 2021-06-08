@@ -17,7 +17,8 @@ class HornedBeasts extends React.Component {
     incrementNumOfPets = () => {
         this.setState({
             numOfPets : this.state.numOfPets+1
-        })
+        });
+        this.props.showModal(this.props.title);
     }
     render(){
         return(
@@ -31,7 +32,7 @@ class HornedBeasts extends React.Component {
             <Card.Img variant="top" src={this.props.imageUrl} onClick={this.incrementNumOfPets}/>
             <Card.Body>
                 <Card.Title> {this.props.title}</Card.Title>
-                <Button onClick={this.increaseNumberofclicks} variant="primary">😻Vote{this.state.numberOfpets}</Button>
+                <Button onClick={this.increaseNumberofclicks} variant="primary">😻Vote{this.state.numOfPets}</Button>
                 <Card.Text>
                 ❤️ : {this.state.numOfPets}
                 </Card.Text>
@@ -40,7 +41,7 @@ class HornedBeasts extends React.Component {
                  </Card.Text>
                 
                  <Card.Text>
-                kayword :  {this.props.keyword}
+                keyword :  {this.props.keyword}
                  </Card.Text>
 
                  <Card.Text>
