@@ -2,6 +2,7 @@ import React from 'react';
 import HornedBeasts from './HornedBeasts';
 import data from './data.json'
 import CardColumns from 'react-bootstrap/CardColumns';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -9,12 +10,31 @@ import CardColumns from 'react-bootstrap/CardColumns';
 
 
 class Main extends React.Component {
+  handleEvent = (event) => {
+    if (event.target.value === "All") {
+      this.props.filterHorns(event.target.value);
+    } else {
+      this.props.filterHorns(+event.target.value);
+    }
+  }
     render(){
       
             
         return(
-            <div>
-                <CardColumns>
+          <div>
+              <Form>
+          <Form.Group controlId="hornsSelected">
+            <Form.Label>Number of horns</Form.Label>
+            <Form.Control onChange={this.handleFilter} as="select">
+              <option>Any</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>100</option>
+            </Form.Control>
+          </Form.Group>
+        </Form>
+        <CardColumns>
               {data.map((item)=>{
                 return(
                 < HornedBeasts
@@ -27,7 +47,13 @@ class Main extends React.Component {
                     keyword =  {item.keyword}
                 />
                   )})}
-           </CardColumns></div>
+           </CardColumns>
+        
+
+          </div>
+        
+          //   <div>
+    //  </div>
         //     <div className='img'>
         //     <CardColumns>
 
@@ -43,6 +69,7 @@ class Main extends React.Component {
         //     }
 
         // </CardColumns>
+        
         // </div>
         //     <div className='img'>
         //         <HornedBeasts title={'UniWhal'} descreption={'A unicorn and a narwhal nuzzling their horns'} imageUrl={'http://3.bp.blogspot.com/_DBYF1AdFaHw/TE-f0cDQ24I/AAAAAAAACZg/l-FdTZ6M7z8/s1600/Unicorn_and_Narwhal_by_dinglehopper.jpg'} keyword={'narwhal'}  horns={1} />
